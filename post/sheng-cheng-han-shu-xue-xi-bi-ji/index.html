@@ -1,100 +1,99 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>生成函数学习笔记 | 小峰の妙妙屋</title>
-<meta name="description" content="摆烂大师">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://forza-ferrari.github.io//favicon.ico?v=1642983484000">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://forza-ferrari.github.io//favicon.ico?v=1642984708405">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://forza-ferrari.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="生成函数学习笔记 | 小峰の妙妙屋 - Atom Feed" href="https://forza-ferrari.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
 
-  
-
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-
+    <meta name="description" content="生成函数学习笔记
+终于还是逃不过要动这个东西了……自闭……
+前置知识：形式幂级数、等比数列、导数、泰勒展开、微积分、广义二项式定理。
+0.我为啥要学生成函数？
+考纲范围内
+生成函数通俗来说是一个序列的母函数，在 OI 中多用来解决组合计数有..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-  
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://forza-ferrari.github.io/">小峰の妙妙屋</a></h3>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://forza-ferrari.github.io/">
+  <img class="avatar" src="https://forza-ferrari.github.io//images/avatar.png?v=1642984708405" alt="">
+  </a>
+  <h1 class="site-title">
+    小峰の妙妙屋
+  </h1>
+  <p class="site-description">
+    摆烂大师
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
   </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
-        
-          <li>
-            
-              <a href="/" class="menu">
-                首页
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/archives" class="menu">
-                归档
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/tags" class="menu">
-                标签
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/post/about" class="menu">
-                关于
-              </a>
-            
-          </li>
-        
-      </ul>
-    </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   </div>
-</nav>
+</div>
 
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <article class="article">
-            <h1>生成函数学习笔记</h1>
-            <p class="article-meta">
-              2022-01-24
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              生成函数学习笔记
+            </h2>
+            <div class="post-info">
+              <span>
+                2022-01-24
+              </span>
+              <span>
+                30 min read
+              </span>
               
-            </p>
+            </div>
             
-            <div class="post-content">
-              <h1 id="生成函数学习笔记">生成函数学习笔记</h1>
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="生成函数学习笔记">生成函数学习笔记</h1>
 <p>终于还是逃不过要动这个东西了……自闭……</p>
 <p>前置知识：形式幂级数、等比数列、导数、泰勒展开、微积分、广义二项式定理。</p>
 <h2 id="0我为啥要学生成函数">0.我为啥要学生成函数？</h2>
@@ -560,108 +559,103 @@ signed main()
 }
 </code></pre>
 
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">生成函数学习笔记</a>
+<ul>
+<li><a href="#0%E6%88%91%E4%B8%BA%E5%95%A5%E8%A6%81%E5%AD%A6%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0">0.我为啥要学生成函数？</a></li>
+<li><a href="#1-%E6%99%AE%E9%80%9A%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0-mathrmordinary-generating-function">1. 普通生成函数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">O</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">y</mi><mtext> </mtext><mi mathvariant="normal">G</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi><mtext> </mtext><mi mathvariant="normal">F</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow><annotation encoding="application/x-tex">\mathrm{Ordinary\ Generating\ Function}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">O</span><span class="mord mathrm">r</span><span class="mord mathrm">d</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span><span class="mord mathrm">a</span><span class="mord mathrm">r</span><span class="mord mathrm" style="margin-right:0.01389em;">y</span><span class="mspace"> </span><span class="mord mathrm">G</span><span class="mord mathrm">e</span><span class="mord mathrm">n</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span><span class="mord mathrm">a</span><span class="mord mathrm">t</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span><span class="mspace"> </span><span class="mord mathrm">F</span><span class="mord mathrm">u</span><span class="mord mathrm">n</span><span class="mord mathrm">c</span><span class="mord mathrm">t</span><span class="mord mathrm">i</span><span class="mord mathrm">o</span><span class="mord mathrm">n</span></span></span></span></span></a></li>
+<li><a href="#2%E6%8C%87%E6%95%B0%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0-mathrmexponential-generating-function">2.指数生成函数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">E</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">l</mi><mtext> </mtext><mi mathvariant="normal">G</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi><mtext> </mtext><mi mathvariant="normal">F</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi></mrow><annotation encoding="application/x-tex">\mathrm{Exponential\ Generating\ Function}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">E</span><span class="mord mathrm">x</span><span class="mord mathrm">p</span><span class="mord mathrm">o</span><span class="mord mathrm">n</span><span class="mord mathrm">e</span><span class="mord mathrm">n</span><span class="mord mathrm">t</span><span class="mord mathrm">i</span><span class="mord mathrm">a</span><span class="mord mathrm">l</span><span class="mspace"> </span><span class="mord mathrm">G</span><span class="mord mathrm">e</span><span class="mord mathrm">n</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span><span class="mord mathrm">a</span><span class="mord mathrm">t</span><span class="mord mathrm">i</span><span class="mord mathrm">n</span><span class="mord mathrm" style="margin-right:0.01389em;">g</span><span class="mspace"> </span><span class="mord mathrm">F</span><span class="mord mathrm">u</span><span class="mord mathrm">n</span><span class="mord mathrm">c</span><span class="mord mathrm">t</span><span class="mord mathrm">i</span><span class="mord mathrm">o</span><span class="mord mathrm">n</span></span></span></span></span></a></li>
+<li><a href="#3-%E4%B8%80%E4%BA%9B%E4%BE%8B%E9%A2%98">3. 一些例题</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
             </div>
           </article>
         </div>
-        <div class="paper" data-aos="fade-in">
-          
-        </div>
-        
-          
-            <div class="paper" data-aos="fade-in">
-              <div id="gitalk-container"></div>
-            </div>
-          
 
-          
         
-      </div>
 
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://forza-ferrari.github.io//images/avatar.png?v=1642983484000" class="no-responsive avatar">
-    <div class="text-muted">摆烂大师</div>
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      最新文章
-    </div>
-    <div class="row">
-      <ul>
         
           
-            <li>
-              <a href="https://forza-ferrari.github.io/post/sheng-cheng-han-shu-xue-xi-bi-ji/">生成函数学习笔记</a>
-            </li>
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      标签列表
-    </div>
-    <div class="row">
-      
-    </div>
-  </div>
-  <div class="paper">
-    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://forza-ferrari.github.io//atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
+<div id="gitalk-container"></div>
 
-    </div>
+<script>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
 
-<script type="application/javascript">
-
-AOS.init();
-
-hljs.initHighlightingOnLoad()
+  gitalk.render('gitalk-container')
 
 </script>
 
+          
 
+          
+        
 
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://forza-ferrari.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
     <script>
+      hljs.initHighlightingOnLoad()
 
-      var gitalk = new Gitalk({
-        clientID: '',
-        clientSecret: '',
-        repo: '',
-        owner: '',
-        admin: [''],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
 
-      gitalk.render('gitalk-container')
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
 
     </script>
-  
-
-  
-
-
-
-
   </body>
 </html>
