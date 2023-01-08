@@ -1,0 +1,836 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<meta HTTP-EQUIV="expires" CONTENT="0"> 
+<title>回滚莫队学习笔记 | 峰峰峰の妙妙屋</title>	
+
+<link rel="stylesheet" href="https://forza-ferrari.github.io/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+            display = "https://forza-ferrari.github.io/media/css/night.css";
+
+            display = "https://forza-ferrari.github.io/media/css/night.css";   
+      
+            display = "https://forza-ferrari.github.io/media/css/day.css";
+
+            display = "https://forza-ferrari.github.io/media/css/day.css";
+      
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap" rel="stylesheet">
+<link href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<script type='text/javascript' src='https://forza-ferrari.github.io/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+
+
+ 	
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+        
+			
+		<header id="header" class="site-header" 
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://forza-ferrari.github.io" rel="home">峰峰峰の妙妙屋</a></h1>
+										
+					<h2 class="site-description">我这个人还有得救。</h2>
+										
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+     			
+<li>
+	 
+	<a  href="/"> 首页</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/archives"> 归档</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/tags"> 标签</a></li>
+	
+    
+
+</ul>
+</li>		
+		
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+				
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+	
+	                      
+		<div class="entry-content">
+			<h1 class="wow swing entry-title">回滚莫队学习笔记</h1>
+<div class="entry-meta">
+<div class="wow bounce">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2022-01-28 22:51:49" itemprop="datePublished" pubdate="">2022-01-28</time></i>
+	          </div>
+			
+</span>
+													 
+		</div>
+                  
+			<div class="wow slideInLeft entry-summary song">
+				<p>被这个东西把 WC 金牌搞没了……来学一下。</p>
+<p>回滚莫队有两种，不删除莫队和不插入莫队，可以用来解决加点和删点只有一种可以在复杂度正确的时间内维护的情形。</p>
+<hr>
+<h2 id="1不删除莫队">1.不删除莫队</h2>
+<p>不删除莫队具体操作如下：</p>
+<ol>
+<li>将所有询问按照左端点所在块升序，同一个块内右端点<strong>升序</strong>排序。</li>
+<li>如果询问左右端点在同一个块内，特判，直接暴力。（否则右端点会左移导致需要删点）</li>
+<li>如果左端点来到一个新的块，那么清空莫队，将指针放在这个块的右端点处。</li>
+<li>然后左端点在这个块内的询问右端点是不降的，可以直接右移右端点。</li>
+<li>每次询问都左移左端点，查询结束后将左端点恢复到当前块右端点的状态。</li>
+</ol>
+<p>可以发现这样就避免了删点操作。</p>
+<p>然后来分析复杂度：首先暴力的部分复杂度显然不会超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><msqrt><mi>n</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n\sqrt n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span>；</p>
+<p>然后是清空莫队的操作，这个一次 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，最多进行 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msqrt><mi>n</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\sqrt n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 次，也是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><msqrt><mi>n</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n\sqrt n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span>；</p>
+<p>右移右端点操作，每个块最多 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，总的是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><msqrt><mi>n</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n\sqrt n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span>；</p>
+<p>左移和重置左端点，每次最多 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msqrt><mi>n</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\sqrt n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，全部询问加起来是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><msqrt><mi>n</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n\sqrt n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
+<p>综上，复杂度是  <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><msqrt><mi>n</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n\sqrt n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的。</p>
+<hr>
+<h2 id="2不插入莫队">2.不插入莫队</h2>
+<p>类比不删除莫队：</p>
+<ol>
+<li>将所有询问按照左端点所在块升序，同一个块内右端点<strong>降序</strong>排序。</li>
+<li><strong>不需要</strong>特判同一个块内的情况。（因为右端点不断左移不会影响）</li>
+<li>到新的块之后将左端点移动到块的左端点，右端点移动到序列末尾。（当然这里需要支持能够在正确复杂度内完成插入序列并初始化的操作）</li>
+<li>块内询问右端点不增，每次左移右端点。</li>
+<li>对于每个询问右移左端点，查询结束后重置。</li>
+</ol>
+<p>这样就避免了加点操作。</p>
+<p>复杂度分析同理，也是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><msqrt><mi>n</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n\sqrt n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
+<hr>
+<h2 id="3一些例题">3.一些例题</h2>
+<h3 id="1-joisc-2014-day1历史研究">(1) <a href="https://loj.ac/p/2874">「JOISC 2014 Day1」历史研究</a></h3>
+<p>给一个序列，询问区间数字出现次数与数字本身乘积的最大值。</p>
+<p>加点容易维护，因为答案只可能被当前加入的点更新；但是删点不行，因为我们没法快速找出来删掉这个点之后的最大值。</p>
+<p>于是套一个不删除莫队上去即可。</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+using namespace std;
+int n,m,block,pos[100001],p[100001],sum[100001][2],node[100001],cnt,a[100001];
+long long maxn,ans[100001];
+struct element
+{
+    int l,r,id;
+    bool operator &lt;(const element &amp;other) const
+    {
+        return pos[l]^pos[other.l]? pos[l]&lt;pos[other.l]:r&lt;other.r;
+    }
+}q[100001];
+inline int read()
+{
+    int x=0;
+    char c=getchar();
+    while(c&lt;'0'||c&gt;'9')
+        c=getchar();
+    while(c&gt;='0'&amp;&amp;c&lt;='9')
+    {
+        x=(x&lt;&lt;1)+(x&lt;&lt;3)+(c^48);
+        c=getchar();
+    }
+    return x;
+}
+inline void insert(int x)
+{
+    ++sum[x][0];
+    maxn=max(maxn,1ll*sum[x][0]*node[x]);
+}
+inline void del(int x)
+{
+    --sum[x][0];
+}
+int main()
+{
+    n=read(),m=read();
+    block=sqrt(n);
+    for(int i=1;i&lt;=n;++i)
+    {
+        node[i]=a[i]=read();
+        pos[i]=(i-1)/block+1;
+        if(i!=1&amp;&amp;pos[i]!=pos[i-1])
+            p[pos[i-1]]=i-1;
+    }
+    p[pos[n]]=n;
+    sort(node+1,node+n+1);
+    cnt=unique(node+1,node+n+1)-node-1;
+    for(int i=1;i&lt;=n;++i)
+        a[i]=lower_bound(node+1,node+cnt+1,a[i])-node;
+    for(int i=1;i&lt;=m;++i)
+    {
+        q[i].l=read(),q[i].r=read();
+        q[i].id=i;
+    }
+    sort(q+1,q+m+1);
+    for(int i=1,l=1,r=0,lst=0;i&lt;=m;++i)
+    {
+        if(pos[q[i].l]==pos[q[i].r])
+        {
+            for(int j=q[i].l;j&lt;=q[i].r;++j)
+            {
+                ++sum[a[j]][1];
+                ans[q[i].id]=max(ans[q[i].id],1ll*sum[a[j]][1]*node[a[j]]);
+            }
+            for(int j=q[i].l;j&lt;=q[i].r;++j)
+                --sum[a[j]][1];
+            continue;
+        }
+        if(pos[q[i].l]^lst)
+        {
+            lst=pos[q[i].l];
+            for(;l&gt;p[pos[q[i].l]]+1;--l)
+                insert(a[l-1]);
+            for(;r&lt;p[pos[q[i].l]];++r)
+                insert(a[r+1]);
+            for(;l&lt;p[pos[q[i].l]]+1;++l)
+                del(a[l]);
+            for(;r&gt;p[pos[q[i].l]];--r)
+                del(a[r]);
+            maxn=0;
+        }
+        for(;r&lt;q[i].r;++r)
+            insert(a[r+1]);
+        long long tmp=maxn;
+        for(;l&gt;q[i].l;--l)
+            insert(a[l-1]);
+        ans[q[i].id]=maxn;
+        maxn=tmp;
+        for(;l&lt;p[pos[q[i].l]]+1;++l)
+            del(a[l]);
+    }
+    for(int i=1;i&lt;=m;++i)
+        cout&lt;&lt;ans[i]&lt;&lt;'\n';
+    cout&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+<h3 id="2mex">(2)<a href="https://darkbzoj.tk/problem/3585">mex</a></h3>
+<p>给一个序列，询问区间 mex。</p>
+<p>首先忽略所有比 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 大的数。</p>
+<p>然后，删点是容易维护的，开桶维护每个数的数量，删除到 0 之后直接看能不能更新答案即可，但是加点不行，我们还是找不出最大值。</p>
+<p>于是套一个不插入莫队即可。</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+using namespace std;
+int n,m,a[200001],sum[200001][2],pos[200001],p[200001],block,ans[200001],mex;
+struct element
+{
+    int l,r,id;
+    bool operator &lt;(const element &amp;other) const
+    {
+        return pos[l]^pos[other.l]? pos[l]&lt;pos[other.l]:r&gt;other.r;
+    }
+}q[200001];
+inline int read()
+{
+    int x=0;
+    char c=getchar();
+    while(c&lt;'0'||c&gt;'9')
+        c=getchar();
+    while(c&gt;='0'&amp;&amp;c&lt;='9')
+    {
+        x=(x&lt;&lt;1)+(x&lt;&lt;3)+(c^48);
+        c=getchar();
+    }
+    return x;
+}
+inline void insert(int x)
+{
+    if(x&lt;=n)
+        ++sum[x][0];
+}
+inline void del(int x)
+{
+    if(x&lt;=n&amp;&amp;!--sum[x][0])
+        mex=min(mex,x);
+}
+int main()
+{
+    n=read(),m=read();
+    block=sqrt(n);
+    for(int i=1;i&lt;=n;++i)
+    {
+        a[i]=read();
+        pos[i]=(i-1)/block+1;
+        if(pos[i]!=pos[i-1])
+            p[pos[i]]=i;
+    }
+    for(int i=1;i&lt;=m;++i)
+    {
+        q[i].l=read(),q[i].r=read();
+        q[i].id=i;
+    }
+    sort(q+1,q+m+1);
+    for(int i=1,l=1,r=0,lst=0;i&lt;=m;++i)
+    {
+        if(lst^pos[q[i].l])
+        {
+            lst=pos[q[i].l];
+            for(;l&gt;p[pos[q[i].l]];--l)
+                insert(a[l-1]);
+            for(;r&lt;n;++r)
+                insert(a[r+1]);
+            for(;l&lt;p[pos[q[i].l]];++l)
+                del(a[l]);
+            for(int j=0;j&lt;=n;++j)
+                if(!sum[j][0])
+                {
+                    mex=j;
+                    break;
+                }
+        }
+        for(;r&gt;q[i].r;--r)
+            del(a[r]);
+        int tmp=mex;
+        for(;l&lt;q[i].l;++l)
+            del(a[l]);
+        ans[q[i].id]=mex;
+        for(;l&gt;p[pos[q[i].l]];--l)
+            insert(a[l-1]);
+        mex=tmp;
+    }
+    for(int i=1;i&lt;=m;++i)
+        cout&lt;&lt;ans[i]&lt;&lt;'\n';
+    return 0;
+}
+</code></pre>
+<h3 id="3wc2022-秃子酋长">(3)<a href="https://www.luogu.com.cn/problem/P8078">【WC2022】 秃子酋长</a></h3>
+<p>把我送走的题。</p>
+<p>首先有一个 naive 的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><msqrt><mi>n</mi></msqrt><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n\sqrt n\log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 的做法，就是跑普通莫队，然后用 set 维护数字集合，每次插入和删除都只会改变 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 组相邻关系，直接维护即可，这样可以拿到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>50</mn></mrow><annotation encoding="application/x-tex">50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span> 分，也是我的考场做法。</p>
+<p>考虑去掉 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>log</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\log</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span></span></span>。我们发现如果我们用链表就不带 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>log</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\log</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span></span></span>，但是链表只能支持快速删除，无法支持快速插入，因为插入时要遍历整个链表。</p>
+<p>那么考虑不插入莫队，每次移动左端点的时候记录一下要还原的点的链表信息即可，细节稍微多一些。</p>
+<p>据说常数小就过了，还没有数据，不知道行不行。</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;algorithm&gt;
+#include&lt;cmath&gt;
+using namespace std;
+int n,m,a[500001],p[500001],block,pos[500001],s[500001],pre[500001],nxt[500001],sum[500001],h[500001][2];
+long long ans[500001],res;
+struct element
+{
+    int l,r,id;
+    bool operator &lt;(const element &amp;other) const
+    {
+        return pos[l]^pos[other.l]? pos[l]&lt;pos[other.l]:r&gt;other.r;
+    }
+}q[500001];
+inline int read()
+{
+    int x=0;
+    char c=getchar();
+    while(c&lt;'0'||c&gt;'9')
+        c=getchar();
+    while(c&gt;='0'&amp;&amp;c&lt;='9')
+    {
+        x=(x&lt;&lt;1)+(x&lt;&lt;3)+(c^48);
+        c=getchar();
+    }
+    return x;
+}
+inline void print(long long x)
+{
+    if(x&gt;=10)
+        print(x/10);
+    putchar(x%10+'0');
+}
+inline int Abs(int x)
+{
+    return x&gt;=0? x:-x;
+}
+inline void insert(int x)
+{
+    ++sum[x];
+}
+inline void del(int x)
+{
+    --sum[x];
+    if(pre[x])
+    {
+        res-=Abs(p[pre[x]]-p[x]);
+        nxt[pre[x]]=nxt[x];
+    }
+    if(nxt[x])
+    {
+        res-=Abs(p[nxt[x]]-p[x]);
+        pre[nxt[x]]=pre[x];
+    }
+    if(pre[x]&amp;&amp;nxt[x])
+        res+=Abs(p[pre[x]]-p[nxt[x]]);
+    pre[x]=nxt[x]=0;
+}
+int main()
+{
+    n=read(),m=read();
+    block=sqrt(n);
+    for(int i=1;i&lt;=n;++i)
+    {
+        p[a[i]=read()]=i;
+        pos[i]=(i-1)/block+1;
+        if(pos[i]^pos[i-1])
+            s[pos[i]]=i;
+    }
+    for(int i=1;i&lt;=m;++i)
+    {
+        q[i].l=read(),q[i].r=read();
+        q[i].id=i;
+    }
+    sort(q+1,q+m+1);
+    for(int i=1,l=1,r=0,lst=0;i&lt;=m;++i)
+    {
+        if(lst^pos[q[i].l])
+        {
+            lst=pos[q[i].l];
+            for(;l&gt;s[pos[q[i].l]];--l)
+                insert(a[l-1]);
+            for(;r&lt;n;++r)
+                insert(a[r+1]);
+            for(;l&lt;s[pos[q[i].l]];++l)
+                del(a[l]);
+            int k=0;
+            res=0;
+            for(int j=1;j&lt;=n;++j)
+            {
+                pre[j]=nxt[j]=0;
+                if(sum[j])
+                {
+                    pre[j]=k;
+                    if(k)
+                    {
+                        nxt[k]=j;
+                        res+=Abs(p[j]-p[k]);
+                    }
+                    k=j;
+                }
+            }
+        }
+        for(;r&gt;q[i].r;--r)
+            del(a[r]);
+        long long tmp=res;
+        for(int j=l;j&lt;q[i].l;++j)
+        {
+            h[j][0]=pre[a[j]];
+            h[j][1]=nxt[a[j]];
+        }
+        for(;l&lt;q[i].l;++l)
+            del(a[l]);
+        ans[q[i].id]=res;
+        for(;l&gt;s[pos[q[i].l]];--l)
+        {
+            pre[a[l-1]]=h[l-1][0];
+            nxt[a[l-1]]=h[l-1][1];
+            if(pre[a[l-1]])
+                nxt[pre[a[l-1]]]=a[l-1];
+            if(nxt[a[l-1]])
+                pre[nxt[a[l-1]]]=a[l-1];
+            h[l-1][0]=h[l-1][1]=0;
+            insert(a[l-1]);
+        }
+        res=tmp;
+    }
+    for(int i=1;i&lt;=m;++i)
+    {
+        print(ans[i]);
+        putchar('\n');
+    }
+    return 0;
+}
+</code></pre>
+
+							</div>
+	<div class="wow bounceInDown vt-post-tags">
+ 
+					</div>						
+<nav class="navigation3 post-navigation3" role="navigation">
+		
+		<div class="nav-links3">
+      
+		<div class="wow bounceInLeft nav-previous3"><a href="https://forza-ferrari.github.io/post/noi2015-pin-jiu-da-hui-ti-jie/" rel="prev"> [NOI2015] 品酒大会 题解</a></div>
+		 
+		 
+		<div class="wow bounceInRight nav-next3"><a href="https://forza-ferrari.github.io/post/scoi2012miao-xing-qiu-shang-de-dian-ming-ti-jie/" rel="next"> [SCOI2012]喵星球上的点名 题解</a></div>
+		
+		</div>
+	</nav>
+	<div class="wow rollIn author-info" style="visibility: visible; animation-name: rollIn;">
+	<div class="author-avatar pull-left"><img src="https://forza-ferrari.github.io/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">峰峰峰の妙妙屋</div></div>
+
+
+	<p class="author-bio">怄火。挥手。转圈。街舞。跳跳。献吻。跳绳。激动。发抖。磕头。爱情。飞吻。左太极。右太极。回头。</p></div></div>
+	
+		</div>
+		
+ 
+		
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow bounceInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+		
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '7cc9f04e1aca23167e8f',
+    clientSecret: '58f10c4691f92ee9f39e9deb996717f2de766250',
+    repo: 'Forza-Ferrari.github.io',
+    owner: 'forza-ferrari',
+    admin: ['forza-ferrari'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+          
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://forza-ferrari.github.io/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+            av: AV, 
+            el: '.comment',
+            lang: 'zh-cn',
+            
+            
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     	
+      	
+          
+        });
+    </script> 
+
+
+   
+  
+ 
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+	
+        <div class="toc-widget">
+			
+            <div class="toc-title"></div>
+			
+            <div id="toc-content">
+			
+			
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>										 
+
+ 
+       
+
+
+			</div>
+		</div>
+
+		
+		 	<footer id="colophon" class="site-footer">
+
+			<div class="container">
+	
+				<div class="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div>
+		
+		</footer>
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://forza-ferrari.github.io/media/scripts/marlin-scripts.js'></script>
+ <script src="//tokinx.github.io/lately/lately.min.js"></script>
+  <script>jQuery(document).ready(function(){$.lately({'target':'.lately-a,.lately-b,.lately-c'})});</script>
+  <style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+		<script data-no-instant>
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $('.navigation:eq(0)').remove();
+                $("").attr("rel" , "external");
+                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+                $("a.vi").attr("rel" , "");
+                $.viewImage({
+                    'target'  : 'img',
+                    'exclude' : '.vsmile-icons img,.gallery img',
+                    'delay'   : 300
+                });
+                $.lately({
+                    'target' : '.commentmetadata a,.infos time,.post-list time'
+                });
+                prettyPrint();
+                
+                $('ul.links li a').each(function(){
+                    if($(this).parent().find('.bg').length==0){
+                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+                    }
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>

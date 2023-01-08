@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"> 
+<meta HTTP-EQUIV="expires" CONTENT="0"> 
+<title>CF1073G Yet Another LCP Problem 题解 | 峰峰峰の妙妙屋</title>	
+
+<link rel="stylesheet" href="https://forza-ferrari.github.io/styles/main.css">
+<script type="text/javascript">
+function getCSS()
+{
+        datetoday = new Date();
+        timenow=datetoday.getTime();
+        datetoday.setTime(timenow);
+        thehour = datetoday.getHours();
+
+            display = "https://forza-ferrari.github.io/media/css/night.css";
+
+            display = "https://forza-ferrari.github.io/media/css/night.css";   
+      
+            display = "https://forza-ferrari.github.io/media/css/day.css";
+
+            display = "https://forza-ferrari.github.io/media/css/day.css";
+      
+
+var css = '<';
+        css+='link rel="stylesheet" href='+display+' \/';
+        css+='>';
+        document.write(css);
+}
+</script>
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Noto+Sans+SC:300|Montserrat&display=swap" rel="stylesheet">
+<link href="https://at.alicdn.com/t/font_1306644_jwtuc2zzbrd.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<script type='text/javascript' src='https://forza-ferrari.github.io/media/scripts/script.js'></script>
+<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.bootcss.com/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>wow=new WOW({boxClass:'wow',animateClass:'animated',offset:0,mobile:true,live:true});wow.init();</script>
+
+<script type="text/javascript">
+window.onload=getCSS();
+</script>
+
+
+ 	
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard">
+    <div id="wrapper">
+        
+			
+		<header id="header" class="site-header" 
+		
+		>
+			<div class="site-branding">
+									<h1 class="site-title"><a href="https://forza-ferrari.github.io" rel="home">峰峰峰の妙妙屋</a></h1>
+										
+					<h2 class="site-description">我这个人还有得救。</h2>
+										
+							</div>
+			<nav id="nav-wrapper">
+				<div class="container">
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+					<ul id="" class="dove">
+		 
+     			
+<li>
+	 
+	<a  href="/"> 首页</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/archives"> 归档</a></li>
+	
+    
+     			
+<li>
+	 
+	<a  href="/tags"> 标签</a></li>
+	
+    
+
+</ul>
+</li>		
+		
+</ul>				</div>
+			</nav>
+						<div class="jingge">
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        </header>
+
+		<div id="content" class="container">
+			<div class="row">
+	<div class="col-md-8 site-main">
+				
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-5 tag-10 tag-9 tag-11">
+
+	
+	                      
+		<div class="entry-content">
+			<h1 class="wow swing entry-title">CF1073G Yet Another LCP Problem 题解</h1>
+<div class="entry-meta">
+<div class="wow bounce">
+	<i class="iconfont icon-rili"> <time class="lately-a" datetime="2022-02-03 13:39:05" itemprop="datePublished" pubdate="">2022-02-03</time></i>
+	          </div>
+			
+</span>
+													 
+		</div>
+                  
+			<div class="wow slideInLeft entry-summary song">
+				<p>对于后缀 lcp 这种问题，先无脑对反串建个 SAM，然后 lcp 就变成后缀树上 lca 的 len 了。</p>
+<p>考虑如果只有一次询问怎么做：对两个集合内的后缀所在结点打不同的标记，直接 dfs 一遍后缀树，维护子树内两种标记的数量，直接相乘再乘上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>e</mi><msub><mi>n</mi><mi>k</mi></msub><mo>−</mo><mi>l</mi><mi>e</mi><msub><mi>n</mi><mrow><mi>l</mi><mi>i</mi><mi>n</mi><msub><mi>k</mi><mi>k</mi></msub></mrow></msub></mrow><annotation encoding="application/x-tex">len_k-len_{link_k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9502999999999999em;vertical-align:-0.25586em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999985em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:-0.03148em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25586em;"><span></span></span></span></span></span></span></span></span></span> 即可。（这里不直接乘上 lcp 的长度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>e</mi><msub><mi>n</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">len_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是因为这些贡献会在当前点到根的路径上每个点都被算一次，这样就不会算重。）</p>
+<p>但是现在有多次询问，不能每次都 dfs，但是所有询问的集合总大小是有限制的。</p>
+<p>俗话说：“见 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∑</mo></mrow><annotation encoding="application/x-tex">\sum</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00001em;vertical-align:-0.25001em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span></span></span></span>，想虚树。”</p>
+<p>于是直接每次从后缀树上拉一颗虚树出来跑 dfs，就做完了。</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;string&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+struct edge
+{
+    int nxt,to;
+}e[200001&lt;&lt;1];
+int n,m,tot,h[200001&lt;&lt;1],cnt,lst,link[200001&lt;&lt;1],ch[200001&lt;&lt;1][26],len[200001&lt;&lt;1],s[200001&lt;&lt;1][2],fa[200001&lt;&lt;1][21],dep[200001&lt;&lt;1],dfn[200001&lt;&lt;1],id,num[200001],top,t[200001],q[200001&lt;&lt;1];
+long long ans;
+string str;
+inline int read()
+{
+    int x=0;
+    char c=getchar();
+    while(c&lt;'0'||c&gt;'9')
+        c=getchar();
+    while(c&gt;='0'&amp;&amp;c&lt;='9')
+    {
+        x=(x&lt;&lt;1)+(x&lt;&lt;3)+(c^48);
+        c=getchar();
+    }
+    return x;
+}
+inline bool cmp(int x,int y)
+{
+    return dfn[x]&lt;dfn[y];
+}
+inline void add(int x,int y)
+{
+    e[++tot].nxt=h[x];
+    h[x]=tot;
+    e[tot].to=y;
+}
+inline void build(int c)
+{
+    int cur=++cnt,p=lst;
+    len[cur]=len[lst]+1;
+    lst=cur;
+    for(;~p;p=link[p])
+        if(!ch[p][c])
+            ch[p][c]=cur;
+        else
+            break;
+    if(p==-1)
+        return;
+    int q=ch[p][c];
+    if(len[p]+1==len[q])
+    {
+        link[cur]=q;
+        return;
+    }
+    int clone=++cnt;
+    link[clone]=link[q];
+    len[clone]=len[p]+1;
+    for(int i=0;i&lt;26;++i)
+        ch[clone][i]=ch[q][i];
+    link[cur]=link[q]=clone;
+    for(;~p;p=link[p])
+        if(ch[p][c]==q)
+            ch[p][c]=clone;
+        else
+            break;
+}
+inline void dfs1(int k,int f,int deep)
+{
+    dep[k]=deep;
+    fa[k][0]=f;
+    dfn[k]=++id;
+    for(int i=1;i&lt;=20;++i)
+        fa[k][i]=fa[fa[k][i-1]][i-1];
+    for(int i=h[k];i;i=e[i].nxt)
+        dfs1(e[i].to,k,deep+1);
+}
+inline int LCA(int x,int y)
+{
+    if(dep[x]&lt;dep[y])
+        x^=y^=x^=y;
+    for(int d=dep[x]-dep[y],i=0;1&lt;&lt;i&lt;=d;++i)
+        if(d&amp;(1&lt;&lt;i))
+            x=fa[x][i];
+    if(x==y)
+        return x;
+    for(int i=20;~i;--i)
+        if(fa[x][i]^fa[y][i])
+        {
+            x=fa[x][i];
+            y=fa[y][i];
+        }
+    return fa[x][0];
+}
+inline void dfs2(int k,int f)
+{
+    for(int i=h[k];i;i=e[i].nxt)
+    {
+        dfs2(e[i].to,k);
+        s[k][0]+=s[e[i].to][0];
+        s[k][1]+=s[e[i].to][1];
+    }
+    if(k)
+        ans+=1ll*s[k][0]*s[k][1]*(len[k]-len[f]);
+}
+inline void dfs3(int k)
+{
+    for(int i=h[k];i;i=e[i].nxt)
+        dfs3(e[i].to);
+    h[k]=s[k][0]=s[k][1]=0;
+}
+int main()
+{
+    n=read(),m=read();
+    cin&gt;&gt;str;
+    link[0]=-1;
+    for(int i=n-1;~i;--i)
+    {
+        build(str[i]-'a');
+        num[i+1]=lst;
+    }
+    for(int i=1;i&lt;=cnt;++i)
+    {
+        add(link[i],i);
+        //cout&lt;&lt;link[i]&lt;&lt;&quot; &quot;&lt;&lt;i&lt;&lt;'\n';
+    }
+    dfs1(0,-1,1);
+    dfs3(0);
+    tot=0;
+    while(m--)
+    {
+        int p1=read(),p2=read();
+        t[top=1]=0;
+        for(int i=1;i&lt;=p1;++i)
+            ++s[q[i]=num[read()]][0];
+        for(int i=1;i&lt;=p2;++i)
+            ++s[q[i+p1]=num[read()]][1];
+        sort(q+1,q+p1+p2+1,cmp);
+        q[0]=0;
+        for(int i=1;i&lt;=p1+p2;++i)
+        {
+            if(q[i]==q[i-1])
+                continue;
+            int lca=LCA(t[top],q[i]);
+            if(lca!=t[top])
+            {
+                while(dfn[lca]&lt;dfn[t[top-1]])
+                {
+                    add(t[top-1],t[top]);
+                    --top;
+                }
+                if(lca!=t[top-1])
+                {
+                    add(lca,t[top]);
+                    t[top]=lca;
+                }
+                else
+                    add(lca,t[top--]);
+            }
+            t[++top]=q[i];
+        }
+        while(top&gt;1)
+        {
+            add(t[top-1],t[top]);
+            --top;
+        }
+        ans=0;
+        dfs2(0,0);
+        cout&lt;&lt;ans&lt;&lt;'\n';
+        dfs3(0);
+        tot=0;
+    }
+    return 0;
+}
+</code></pre>
+
+							</div>
+	<div class="wow bounceInDown vt-post-tags">
+ 
+					</div>						
+<nav class="navigation3 post-navigation3" role="navigation">
+		
+		<div class="nav-links3">
+      
+		<div class="wow bounceInLeft nav-previous3"><a href="https://forza-ferrari.github.io/post/shoi2014chao-neng-li-zi-pao-ti-jie/" rel="prev"> [SHOI2014]超能粒子炮 题解</a></div>
+		 
+		 
+		<div class="wow bounceInRight nav-next3"><a href="https://forza-ferrari.github.io/post/noi2015-pin-jiu-da-hui-ti-jie/" rel="next"> [NOI2015] 品酒大会 题解</a></div>
+		
+		</div>
+	</nav>
+	<div class="wow rollIn author-info" style="visibility: visible; animation-name: rollIn;">
+	<div class="author-avatar pull-left"><img src="https://forza-ferrari.github.io/images/avatar.png" ></div>
+ 
+	<div class="author-description"><div class="author-title"><div class="author-link" rel="author">峰峰峰の妙妙屋</div></div>
+
+
+	<p class="author-bio">怄火。挥手。转圈。街舞。跳跳。献吻。跳绳。激动。发抖。磕头。爱情。飞吻。左太极。右太极。回头。</p></div></div>
+	
+		</div>
+		
+ 
+		
+</article>
+
+<div id="marlin_lite_about_widget-2" class="wow bounceInUp widget marlin_lite_about_widget" data-wow-delay="0.1s">
+		
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '7cc9f04e1aca23167e8f',
+    clientSecret: '58f10c4691f92ee9f39e9deb996717f2de766250',
+    repo: 'Forza-Ferrari.github.io',
+    owner: 'forza-ferrari',
+    admin: ['forza-ferrari'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+          
+        
+		<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://forza-ferrari.github.io/media/scripts/Valine.min.js'></script>
+
+<div class="comment"></div>
+<script>
+        new Valine({
+            // AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+            av: AV, 
+            el: '.comment',
+            lang: 'zh-cn',
+            
+            
+      emoticon_list: ["吐.png","喷血.png","狂汗.png","不说话.png","汗.png","坐等.png","献花.png","不高兴.png","中刀.png","害羞.png","皱眉.png","小眼睛.png","中指.png","尴尬.png","瞅你.png","想一想.png","中枪.png","得意.png","肿包.png","扇耳光.png","亲亲.png","惊喜.png","脸红.png","无所谓.png","便便.png","愤怒.png","蜡烛.png","献黄瓜.png","内伤.png","投降.png","观察.png","看不见.png","击掌.png","抠鼻.png","邪恶.png","看热闹.png","口水.png","抽烟.png","锁眉.png","装大款.png","吐舌.png","无奈.png","长草.png","赞一个.png","呲牙.png","无语.png","阴暗.png","不出所料.png","咽气.png","期待.png","高兴.png","吐血倒地.png","哭泣.png","欢呼.png","黑线.png","喜极而泣.png","喷水.png","深思.png","鼓掌.png","暗地观察.png"],
+     	
+      	
+          
+        });
+    </script> 
+
+
+   
+  
+ 
+
+		</div>
+
+			</div>
+			
+
+
+<div class="tocc col l3 hide-on-med-and-down">
+	
+        <div class="toc-widget">
+			
+            <div class="toc-title"></div>
+			
+            <div id="toc-content">
+			
+			
+			</div>
+        </div>
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.5.0/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '.entry-summary',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('.entry-summary').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+    });
+</script>										 
+
+ 
+       
+
+
+			</div>
+		</div>
+
+		
+		 	<footer id="colophon" class="site-footer">
+
+			<div class="container">
+	
+				<div class="copyright">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a><br>Theme:   <a href="https://github.com/alterfang/gridea-theme-pan" target="_blank" title="Pan"><span>Pan</span></a>. Powered by <a href="https://gridea.dev/" target="_blank" title="Gridea"><span>Gridea</span></a></div>		
+			</div>
+		
+		</footer>
+
+</div>
+
+<script src="https://cdn.bootcss.com/fitvids/1.2.0/jquery.fitvids.min.js"></script>
+<script type='text/javascript' src='https://forza-ferrari.github.io/media/scripts/marlin-scripts.js'></script>
+ <script src="//tokinx.github.io/lately/lately.min.js"></script>
+  <script>jQuery(document).ready(function(){$.lately({'target':'.lately-a,.lately-b,.lately-c'})});</script>
+  <style type="text/css">a.back_to_top {
+    text-decoration: none;
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    background: #f0f0f0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 18px;
+    text-align: center;
+    transition-duration: .5s;
+    transition-propety: background-color;
+    display: none;
+}
+
+a.back_to_top span {
+    color: #888;
+}
+
+a.back_to_top:hover {
+    cursor: pointer;
+    background: #dfdfdf;
+}
+
+a.back_to_top:hover span {
+    color: #555;
+}
+
+@media print, screen and (max-width: 580px) {
+    .back_to_top {
+        display: none !important;
+    }
+}
+
+
+
+</style><a id="back_to_top" href="#" class="back_to_top"><span><i class="iconfont icon-xiangshang"></i></span>
+</a>
+
+
+<script>$(document).ready((function(_this) {
+  return function() {
+    var bt;
+    bt = $('#back_to_top');
+    if ($(document).width() > 480) {
+      $(window).scroll(function() {
+        var st;
+        st = $(window).scrollTop();
+        if (st > 30) {
+          return bt.css('display', 'block');
+        } else {
+          return bt.css('display', 'none');
+        }
+      });
+      return bt.click(function() {
+        $('body,html').animate({
+          scrollTop: 0
+        }, 800);
+        return false;
+      });
+    }
+  };
+})(this));
+</script>
+
+		<script data-no-instant>
+    (function ($) {
+        $.extend({
+            adamsOverload: function () {
+                $('.navigation:eq(0)').remove();
+                $("").attr("rel" , "external");
+                $("a[rel='external'],a[rel='external nofollow']").attr("target","_blank");
+                $("a.vi").attr("rel" , "");
+                $.viewImage({
+                    'target'  : 'img',
+                    'exclude' : '.vsmile-icons img,.gallery img',
+                    'delay'   : 300
+                });
+                $.lately({
+                    'target' : '.commentmetadata a,.infos time,.post-list time'
+                });
+                prettyPrint();
+                
+                $('ul.links li a').each(function(){
+                    if($(this).parent().find('.bg').length==0){
+                        $(this).parent().append('<!---<div class="bg" style="background-image:url(https://c3.glgoo.top/s2/favicons?domain='+$(this).attr("href")+')"></div>--->')
+                    }
+                });
+            }
+        });
+    })(jQuery);
+    jQuery.adamsOverload();
+</script>
+
+</body>
+</html>
