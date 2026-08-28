@@ -109,7 +109,8 @@ main { padding-block: 68px 40px; }
   aspect-ratio: 16 / 10; overflow: hidden; background: var(--surface);
   border: 1px solid var(--border); border-radius: 4px;
 }
-.publication-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.publication-media img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.publication-copy { min-width: 0; }
 .publication-venue { margin: 0 0 3px; color: var(--accent); font-size: 13px; font-weight: 650; }
 .publication h3 {
   margin: 0 0 5px; font-size: 17px; font-weight: 650; line-height: 1.45;
@@ -117,7 +118,19 @@ main { padding-block: 68px 40px; }
 .authors, .publication-summary {
   margin: 0 0 7px; color: var(--muted); font-size: 14px;
 }
+.authors strong { color: var(--text); font-weight: 700; }
 .item-links { display: flex; flex-wrap: wrap; gap: 14px; }
+.bibtex { margin-top: 7px; font-size: 14px; }
+.bibtex summary {
+  width: max-content; color: var(--accent); font-weight: 550; cursor: pointer;
+  list-style-position: outside;
+}
+.bibtex pre {
+  max-width: 100%; margin: 10px 0 0; padding: 14px; overflow-x: auto;
+  color: var(--text); background: var(--surface); border: 1px solid var(--border);
+  border-radius: 4px; font: 12px/1.55 ui-monospace, SFMono-Regular, Consolas, monospace;
+  white-space: pre;
+}
 .site-footer {
   min-height: 80px; padding-block: 24px; color: var(--muted);
   font-size: 13px; border-top: 1px solid var(--border);
