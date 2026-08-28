@@ -97,12 +97,6 @@ main { padding-block: 68px 40px; }
 .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
 .prose { min-height: 72px; max-width: 76ch; color: var(--muted); }
 .prose p { margin: 0 0 12px; }
-.timeline { min-height: 72px; margin: 0; padding: 0; list-style: none; }
-.timeline li { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 20px; margin-bottom: 12px; }
-.timeline time, .experience-item > time {
-  color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums;
-}
-.timeline p { margin: 0; }
 
 .publication-list { min-height: 140px; }
 .publication {
@@ -117,18 +111,13 @@ main { padding-block: 68px 40px; }
 }
 .publication-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .publication-venue { margin: 0 0 3px; color: var(--accent); font-size: 13px; font-weight: 650; }
-.publication h3, .experience-item h3 {
+.publication h3 {
   margin: 0 0 5px; font-size: 17px; font-weight: 650; line-height: 1.45;
 }
-.authors, .publication-summary, .experience-item p {
+.authors, .publication-summary {
   margin: 0 0 7px; color: var(--muted); font-size: 14px;
 }
 .item-links { display: flex; flex-wrap: wrap; gap: 14px; }
-.experience-list { min-height: 90px; }
-.experience-item {
-  display: grid; grid-template-columns: 150px minmax(0, 1fr);
-  gap: 24px; padding-block: 14px;
-}
 .site-footer {
   min-height: 80px; padding-block: 24px; color: var(--muted);
   font-size: 13px; border-top: 1px solid var(--border);
@@ -156,7 +145,6 @@ main { padding-block: 68px 40px; }
   .affiliation-logo { width: 62px; }
   .publication { grid-template-columns: 1fr; gap: 16px; }
   .publication-media { width: min(100%, 360px); }
-  .experience-item { grid-template-columns: 1fr; gap: 3px; }
 }
 
 @media (max-width: 440px) {
@@ -164,7 +152,6 @@ main { padding-block: 68px 40px; }
   .portrait { width: 112px; }
   .profile-copy { align-self: center; }
   .affiliation-logo { grid-column: 2; width: 58px; justify-self: start; }
-  .timeline li { grid-template-columns: 72px minmax(0, 1fr); gap: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
