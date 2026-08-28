@@ -55,7 +55,7 @@ a:hover { text-decoration-thickness: 2px; }
 
 main { padding-block: 68px 40px; }
 .profile {
-  display: grid; grid-template-columns: 152px minmax(0, 1fr); align-items: center;
+  display: grid; grid-template-columns: 152px minmax(0, 1fr) 88px; align-items: center;
   gap: 40px; min-height: 152px; margin-bottom: 72px;
 }
 .portrait {
@@ -71,6 +71,10 @@ main { padding-block: 68px 40px; }
   margin: 0; padding: 0; list-style: none;
 }
 .profile-links a, .item-links a { font-size: 14px; font-weight: 550; text-decoration: none; }
+.affiliation-logo {
+  display: block; width: 88px; aspect-ratio: 1; justify-self: end;
+}
+.affiliation-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
 
 .content-section { padding-block: 34px 44px; border-top: 1px solid var(--border); }
 .content-section h2 { margin: 0 0 22px; font-size: 23px; font-weight: 650; line-height: 1.3; }
@@ -128,19 +132,22 @@ main { padding-block: 68px 40px; }
   .nav-links a { padding: 10px 0; }
   main { padding-top: 44px; }
   .profile {
-    grid-template-columns: 104px minmax(0, 1fr); gap: 24px; margin-bottom: 50px;
+    grid-template-columns: 104px minmax(0, 1fr) 62px; gap: 24px; margin-bottom: 50px;
   }
   .portrait { width: 104px; }
   .profile h1 { min-height: 34px; font-size: 27px; }
   .role { font-size: 15px; }
+  .affiliation-logo { width: 62px; }
   .publication { grid-template-columns: 1fr; gap: 16px; }
   .publication-media { width: min(100%, 360px); }
   .experience-item { grid-template-columns: 1fr; gap: 3px; }
 }
 
 @media (max-width: 440px) {
-  .profile { grid-template-columns: 1fr; }
+  .profile { grid-template-columns: 112px minmax(0, 1fr); }
   .portrait { width: 112px; }
+  .profile-copy { align-self: center; }
+  .affiliation-logo { grid-column: 2; width: 58px; justify-self: start; }
   .timeline li { grid-template-columns: 72px minmax(0, 1fr); gap: 12px; }
 }
 
