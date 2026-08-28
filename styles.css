@@ -40,9 +40,12 @@ a:hover { text-decoration-thickness: 2px; }
   min-height: var(--header-height); display: flex; align-items: center;
   justify-content: space-between; gap: 32px;
 }
+.brand-group { display: inline-flex; align-items: center; gap: 9px; min-width: 0; }
+.university-mark { display: block; width: 30px; height: 30px; flex: 0 0 auto; }
+.university-mark img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .brand {
-  min-width: 1px; min-height: 24px; color: var(--text); font-size: 17px;
-  font-weight: 650; text-decoration: none;
+  min-width: 0; min-height: 24px; color: var(--text); font-size: 17px;
+  font-weight: 650; text-decoration: none; white-space: nowrap;
 }
 .nav-links { display: flex; align-items: center; gap: 26px; }
 .nav-links a { color: var(--muted); font-size: 14px; font-weight: 500; text-decoration: none; }
@@ -55,7 +58,7 @@ a:hover { text-decoration-thickness: 2px; }
 
 main { padding-block: 68px 40px; }
 .profile {
-  display: grid; grid-template-columns: 152px minmax(0, 1fr) 88px; align-items: center;
+  display: grid; grid-template-columns: 152px minmax(0, 1fr); align-items: center;
   gap: 40px; min-height: 152px; margin-bottom: 72px;
 }
 .portrait {
@@ -87,11 +90,6 @@ main { padding-block: 68px 40px; }
   stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
 }
 .item-links a { font-size: 14px; font-weight: 550; text-decoration: none; }
-.affiliation-logo {
-  display: block; width: 88px; aspect-ratio: 1; justify-self: end;
-}
-.affiliation-logo img { display: block; width: 100%; height: 100%; object-fit: contain; }
-
 .content-section { padding-block: 34px 44px; border-top: 1px solid var(--border); }
 .content-section h2 { margin: 0 0 22px; font-size: 23px; font-weight: 650; line-height: 1.3; }
 .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
@@ -163,12 +161,11 @@ main { padding-block: 68px 40px; }
   .nav-links a { padding: 10px 0; }
   main { padding-top: 44px; }
   .profile {
-    grid-template-columns: 104px minmax(0, 1fr) 62px; gap: 24px; margin-bottom: 50px;
+    grid-template-columns: 104px minmax(0, 1fr); gap: 24px; margin-bottom: 50px;
   }
   .portrait { width: 104px; }
   .profile h1 { min-height: 34px; font-size: 27px; }
   .role { font-size: 15px; }
-  .affiliation-logo { width: 62px; }
   .publication { grid-template-columns: 1fr; gap: 16px; }
   .publication-media { width: min(100%, 360px); }
 }
@@ -177,7 +174,6 @@ main { padding-block: 68px 40px; }
   .profile { grid-template-columns: 112px minmax(0, 1fr); }
   .portrait { width: 112px; }
   .profile-copy { align-self: center; }
-  .affiliation-logo { grid-column: 2; width: 58px; justify-self: start; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
