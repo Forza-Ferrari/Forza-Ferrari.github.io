@@ -1,0 +1,12 @@
+# Local-only personal website editor
+Personal-Website-Editor.exe
+EDITOR.md
+site-content.json
+tools/
+tests/
+templates/
+assets/site-editor.ico
+.site-editor/
+.site-editor-build/
+__pycache__/
+*.py[cod]
