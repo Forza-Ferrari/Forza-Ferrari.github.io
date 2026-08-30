@@ -108,6 +108,7 @@ main { padding-block: 68px 40px; }
   border: 1px solid var(--border); border-radius: 4px;
 }
 .publication-media img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.publication-no-media { grid-template-columns: 1fr; }
 .publication-copy { min-width: 0; }
 .publication-venue { margin: 0 0 3px; color: var(--accent); font-size: 13px; font-weight: 650; }
 .publication h3 {
@@ -146,6 +147,7 @@ main { padding-block: 68px 40px; }
   min-height: 80px; padding-block: 24px; color: var(--muted);
   font-size: 13px; border-top: 1px solid var(--border);
 }
+.empty-state { margin: 0; color: var(--muted); }
 
 @media (max-width: 700px) {
   :root { --header-height: 58px; }
